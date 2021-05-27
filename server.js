@@ -4,6 +4,7 @@ const { response } = require("express");
 
 //load the 'express' module which makes writing webservers easy
 const express = require("express");
+
 const app = express();
 
 //load the quotes JSON
@@ -18,6 +19,19 @@ app.get("/", function (request, response) {
 });
 
 //START OF YOUR CODE...
+app.get('/quotes', (req, res) => {
+  let name = quotes.map(element => element)
+  res.send(name)
+});
+app.get('/quotes/random', (req, res) => {
+  const datos = quotes
+  function pickFromArray(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+  res.send(pickFromArray(datos))
+});
+
+
 
 //...END OF YOUR CODE
 
@@ -25,6 +39,7 @@ app.get("/", function (request, response) {
 //example: pickFromArray([1,2,3,4]), or
 //example: pickFromArray(myContactsArray)
 //
+
 function pickFromArray(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
